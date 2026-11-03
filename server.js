@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const connectDB = require("./config/db");
+const studioRoutes = require("./routes/studioRoutes");
 
 const app = express();
 
@@ -15,6 +16,18 @@ app.get("/", (req, res) => {
   res.send("StudioSpace Server is running!");
 });
 
+// Health check route
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "StudioSpace API is healthy",
+  });
+});
+
+// Studio routes
+app.use("/api/studios", studioRoutes);
+
+// Server
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
