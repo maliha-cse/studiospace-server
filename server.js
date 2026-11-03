@@ -1,4 +1,4 @@
-
+const bookingRoutes = require("./routes/bookingRoutes");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -26,6 +26,7 @@ app.get("/health", (req, res) => {
 
 // Studio routes
 app.use("/api/studios", studioRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 // Server
 const PORT = process.env.PORT || 5000;
